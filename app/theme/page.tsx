@@ -57,10 +57,10 @@ function IconPerson({ color }: { color: string }) {
 }
 
 const ISLANDS = [
-  { type: "현실도피섬", subtitle: "복잡하고 답답한 공간", secret: false },
-  { type: "가성비섬", subtitle: "부담 없이 오래 머물 수 있는 공간", secret: false },
-  { type: "밤샘섬", subtitle: "늦은 시간도 이용 가능한 공간", secret: false },
-  { type: "비밀섬", subtitle: "아는 사람만 아는 공부명당", secret: true },
+  { type: "현실도피섬", subtitle: "복잡하고 답답한 공간", secret: false, image: "/assets/island-escape.png" },
+  { type: "가성비섬", subtitle: "부담 없이 오래 머물 수 있는 공간", secret: false, image: "/assets/island-cheap.png" },
+  { type: "밤샘섬", subtitle: "늦은 시간도 이용 가능한 공간", secret: false, image: "/assets/island-night.png" },
+  { type: "비밀섬", subtitle: "아는 사람만 아는 공부명당", secret: true, image: "/assets/island-secret.png" },
 ] as const;
 
 function countByCategory(islandType: string) {
@@ -144,14 +144,14 @@ export default function ThemePage() {
             <div
               style={{
                 marginTop: 16, width: 200, height: 170,
-                borderRadius: 16,
-                background: "rgba(255,255,255,0.35)",
-                border: "1px dashed rgba(58,46,16,0.35)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "#6b5a28", fontSize: 12, textAlign: "center", lineHeight: 1.5,
               }}
             >
-              {island.type}<br />일러스트 자리
+              <img
+                src={island.image}
+                alt={island.type}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              />
             </div>
 
             <div style={{ marginTop: 18, width: "100%", maxWidth: 240 }}>
