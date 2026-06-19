@@ -113,7 +113,7 @@ export default function PlaceDetailPage({ params }: { params: Promise<{ id: stri
                   <img src={imgLocationPin} alt="" style={{ width: "100%", height: "100%" }} />
                 </div>
                 <span style={{ fontSize: 10, color: "#767676", letterSpacing: "-0.25px", lineHeight: 1.3 }}>
-                  서울시 성북구 장월로 1마길 5 1F, B1
+                  {place.address}
                 </span>
               </div>
 

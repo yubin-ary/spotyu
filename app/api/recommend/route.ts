@@ -10,6 +10,8 @@ export async function POST(request: NextRequest) {
   const placesSummary = mockPlaces.map((p) => ({
     id: p.id,
     category: p.category,
+    address: p.address,
+    coordinates: p.coordinates,
     noiseLevel: p.noiseLevel,
     size: p.size,
     cleanliness: p.cleanliness,

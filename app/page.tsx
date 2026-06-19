@@ -1,13 +1,9 @@
-"use client";
-
-import { useRouter } from "next/navigation";
+import SplashStartButton from "./SplashStartButton";
 
 const imgHill = "/assets/e4d5f9c1430b0b30a1eb7593dfe8f415ce5a0f83.svg";
 const imgStatusIcons = "/assets/b655a4944c744b18f533b9c4e87522b5f1e0f728.svg";
 
 export default function SplashPage() {
-  const router = useRouter();
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div style={{ width: 390, height: 844, position: "relative" }}>
@@ -72,30 +68,7 @@ export default function SplashPage() {
           </div>
 
           {/* Start button */}
-          <button
-            onClick={() => router.push("/onboarding")}
-            className="absolute flex items-center justify-center rounded-[10px] cursor-pointer"
-            style={{
-              left: 24,
-              top: 732,
-              width: 339,
-              height: 60,
-              backgroundColor: "#ffbf00",
-              border: "none",
-            }}
-          >
-            <span
-              style={{
-                fontSize: 16,
-                fontWeight: 600,
-                color: "#111",
-                letterSpacing: "-0.4px",
-                lineHeight: 1.5,
-              }}
-            >
-              시작하기
-            </span>
-          </button>
+          <SplashStartButton />
 
           {/* Subtitle text */}
           <p

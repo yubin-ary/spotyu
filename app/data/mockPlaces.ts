@@ -1,6 +1,11 @@
 export type TreasureType = "밤샘섬" | "가성비섬" | null;
 export type Category = "카페" | "도서관" | "스터디카페";
 
+export interface GeoPoint {
+  lat: number;
+  lng: number;
+}
+
 export interface Place {
   id: number;
   name: string;
@@ -8,7 +13,9 @@ export interface Place {
   weekdayHours: string;
   weekendHours: string;
   imageUrl: string;
-  position: { x: number; y: number }; // percentage of map container
+  address: string;
+  coordinates: GeoPoint;
+  externalPlaceId?: string;
   noiseLevel: string;
   size: string;
   cleanliness: string;
@@ -26,7 +33,9 @@ const mockPlaces: Place[] = [
     weekdayHours: "10:00~22:00",
     weekendHours: "12:00~22:00",
     imageUrl: "/assets/ab9b57e850c9d68cef7849e730bf7a1716cd76f6.png",
-    position: { x: 48, y: 46 },
+    address: "서울시 성북구 장월로 1마길 5 1F, B1",
+    coordinates: { lat: 37.6039, lng: 127.0462 },
+    externalPlaceId: "mock-kakao-place-1",
     noiseLevel: "조용함",
     size: "큼",
     cleanliness: "좋음",
@@ -41,7 +50,9 @@ const mockPlaces: Place[] = [
     weekdayHours: "10:00~22:00",
     weekendHours: "12:00~22:00",
     imageUrl: "/assets/ab9b57e850c9d68cef7849e730bf7a1716cd76f6.png",
-    position: { x: 72, y: 28 },
+    address: "서울시 성북구 화랑로 13길 17",
+    coordinates: { lat: 37.6061, lng: 127.0495 },
+    externalPlaceId: "mock-kakao-place-2",
     noiseLevel: "조용함",
     size: "보통",
     cleanliness: "좋음",
@@ -56,7 +67,9 @@ const mockPlaces: Place[] = [
     weekdayHours: "10:00~22:00",
     weekendHours: "12:00~22:00",
     imageUrl: "/assets/ab9b57e850c9d68cef7849e730bf7a1716cd76f6.png",
-    position: { x: 58, y: 60 },
+    address: "서울시 성북구 월곡로 44",
+    coordinates: { lat: 37.6025, lng: 127.0476 },
+    externalPlaceId: "mock-kakao-place-3",
     noiseLevel: "보통",
     size: "큼",
     cleanliness: "보통",
@@ -71,7 +84,9 @@ const mockPlaces: Place[] = [
     weekdayHours: "10:00~22:00",
     weekendHours: "12:00~22:00",
     imageUrl: "/assets/ab9b57e850c9d68cef7849e730bf7a1716cd76f6.png",
-    position: { x: 30, y: 70 },
+    address: "서울시 성북구 종암로 167",
+    coordinates: { lat: 37.6014, lng: 127.0437 },
+    externalPlaceId: "mock-kakao-place-4",
     noiseLevel: "시끄러움",
     size: "작음",
     cleanliness: "보통",
@@ -86,7 +101,9 @@ const mockPlaces: Place[] = [
     weekdayHours: "10:00~22:00",
     weekendHours: "12:00~22:00",
     imageUrl: "/assets/ab9b57e850c9d68cef7849e730bf7a1716cd76f6.png",
-    position: { x: 68, y: 55 },
+    address: "서울시 성북구 오패산로 46",
+    coordinates: { lat: 37.6030, lng: 127.0489 },
+    externalPlaceId: "mock-kakao-place-5",
     noiseLevel: "조용함",
     size: "큼",
     cleanliness: "깨끗함",
@@ -101,7 +118,9 @@ const mockPlaces: Place[] = [
     weekdayHours: "10:00~22:00",
     weekendHours: "12:00~22:00",
     imageUrl: "/assets/ab9b57e850c9d68cef7849e730bf7a1716cd76f6.png",
-    position: { x: 50, y: 72 },
+    address: "서울시 성북구 하월곡동 88",
+    coordinates: { lat: 37.6012, lng: 127.0465 },
+    externalPlaceId: "mock-kakao-place-6",
     noiseLevel: "보통",
     size: "보통",
     cleanliness: "좋음",
