@@ -24,3 +24,41 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes spotyu-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spotyu-loading-orbit {
+  position: relative;
+  width: 124px;
+  height: 124px;
+  border-radius: 9999px;
+  animation: spotyu-orbit-spin 1.05s linear infinite;
+}
+
+.spotyu-loading-orbit::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border-radius: 9999px;
+  border: 10px solid rgba(255, 191, 0, 0.18);
+  border-top-color: #ffbf00;
+}
+
+.spotyu-loading-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: #ffbf00;
+  box-shadow: 0 8px 18px rgba(255, 191, 0, 0.35);
+  transform: translateX(-50%);
+}
