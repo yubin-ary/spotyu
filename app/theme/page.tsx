@@ -115,15 +115,17 @@ export default function ThemePage() {
     <div className="pf-outer">
       <div className="pf-sizing">
         <div
-          className="pf-frame border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
+          className="pf-frame border-2 border-[#111] border-solid overflow-clip rounded-[25px]"
           style={{
             width: "100%",
             height: "100%",
             background: "linear-gradient(180deg, #d6ecfb 0%, #eaf6fd 55%, #f5f1e3 100%)",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-         
-          <div style={{ position: "absolute", top: 43, left: 0, width: 390, height: 46, zIndex: 20, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", boxSizing: "border-box" }}>
+          {/* Header */}
+          <div style={{ flexShrink: 0, paddingTop: 43, height: 89, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "43px 24px 0", boxSizing: "border-box" }}>
             <p style={{ fontSize: 23, fontWeight: 900, color: "#ffbf00", letterSpacing: "-0.575px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
               SPOTYU
             </p>
@@ -133,24 +135,29 @@ export default function ThemePage() {
             </div>
           </div>
 
-          <p className="absolute" style={{ left: 24, top: 100, fontSize: 22, fontWeight: 700, color: "#1a1a1a", lineHeight: 1.4, letterSpacing: "-0.5px" }}>
-            오늘은 어떤 공간에서<br />공부하고 싶나요?
-          </p>
-          <p className="absolute" style={{ left: 24, top: 168, fontSize: 13, fontWeight: 400, color: "#7a7a7a", letterSpacing: "-0.3px" }}>
-            원하는 분위기의 스팟을 탐험해보세요.
-          </p>
+          {/* Title */}
+          <div style={{ flexShrink: 0, padding: "12px 24px 0" }}>
+            <p style={{ fontSize: 22, fontWeight: 700, color: "#1a1a1a", lineHeight: 1.4, letterSpacing: "-0.5px" }}>
+              오늘은 어떤 공간에서<br />공부하고 싶나요?
+            </p>
+            <p style={{ marginTop: 8, fontSize: 13, fontWeight: 400, color: "#7a7a7a", letterSpacing: "-0.3px" }}>
+              원하는 분위기의 스팟을 탐험해보세요.
+            </p>
+          </div>
 
-          {/* Card carousel – centre card + side peek cards */}
+          {/* Spacer */}
+          <div style={{ flex: 0.6 }} />
+
+          {/* Card carousel + dots */}
           <div
-            className="absolute"
+            style={{ flexShrink: 0, position: "relative", height: 420, overflow: "visible" }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            style={{ left: 0, top: 230, width: 390, height: 430, overflow: "visible" }}
           >
             {ISLANDS.map((isl, i) => {
-              const offset = i - index;          // -1, 0, 1, 2 …
+              const offset = i - index;
               const CARD_W = 318;
-              const GAP = 334;                   // centre-to-centre distance
+              const GAP = 334;
               const x = offset * GAP;
               const isActive = offset === 0;
               const c = countByCategory(places, isl.type);
@@ -168,9 +175,7 @@ export default function ThemePage() {
                     transition: "transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), top 0.35s, height 0.35s, opacity 0.35s",
                     backgroundColor: "#ffc933",
                     borderRadius: 24,
-                    boxShadow: isActive
-                      ? "0px 8px 24px rgba(245,166,35,0.35)"
-                      : "0px 4px 12px rgba(245,166,35,0.18)",
+                    boxShadow: isActive ? "0px 8px 24px rgba(245,166,35,0.35)" : "0px 4px 12px rgba(245,166,35,0.18)",
                     opacity: Math.abs(offset) > 1 ? 0 : isActive ? 1 : 0.75,
                     padding: "26px 20px 20px",
                     display: "flex",
@@ -183,11 +188,9 @@ export default function ThemePage() {
                 >
                   <p style={{ fontSize: 21, fontWeight: 800, color: "#3a2e10", letterSpacing: "-0.5px" }}>{isl.type}</p>
                   <p style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: "#6b5a28", letterSpacing: "-0.3px" }}>{isl.subtitle}</p>
-
                   <div style={{ marginTop: 16, width: 200, height: 170, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={isl.image} alt={isl.type} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                   </div>
-
                   <div style={{ marginTop: 18, width: "100%", maxWidth: 240 }}>
                     {isl.secret ? (
                       <div style={{ background: "rgba(255,255,255,0.55)", borderRadius: 10, padding: "10px 0", textAlign: "center" }}>
@@ -204,7 +207,6 @@ export default function ThemePage() {
                       </div>
                     )}
                   </div>
-
                   {isActive && (
                     <button
                       onClick={(e) => { e.stopPropagation(); router.push(`/theme/${encodeURIComponent(isl.type)}`); }}
@@ -223,7 +225,8 @@ export default function ThemePage() {
             })}
           </div>
 
-          <div className="absolute" style={{ left: 0, right: 0, top: 668, display: "flex", justifyContent: "center", gap: 7, zIndex: 10 }}>
+          {/* Dot indicators – right below card */}
+          <div style={{ flexShrink: 0, height: 28, display: "flex", justifyContent: "center", alignItems: "center", gap: 7, marginTop: 14 }}>
             {ISLANDS.map((_, i) => (
               <button
                 key={i}
@@ -237,11 +240,16 @@ export default function ThemePage() {
             ))}
           </div>
 
-          {/* Nav – 지도 페이지와 동일한 스타일 */}
-          <div className="nav-bottom absolute" style={{ left: 0, right: 0, top: 745, height: 63 }}>
-            <div style={{ position: "absolute", left: -10, right: -10, top: -7, height: 70 }}>
+          {/* Spacer */}
+          <div style={{ flex: 1.4 }} />
+
+          {/* Nav */}
+          <div className="nav-bottom absolute" style={{ left: 0, right: 0, top: 745, height: 63, zIndex: 25 }}>
+            <div style={{ position: "absolute", left: -10, right: -10, top: -7, height: 70, filter: "drop-shadow(0px -3px 8px rgba(0,0,0,0.10))" }}>
               <img src={imgNavBg} alt="" style={{ width: "100%", height: "100%", display: "block" }} />
             </div>
+            {/* White fill from icon-text bottom to screen bottom */}
+            <div style={{ position: "absolute", left: 0, right: 0, top: 44, bottom: -100, background: "#fff" }} />
             <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", alignItems: "center", height: "100%", padding: "20px 0 0 0" }}>
               {NAV_ITEMS.map((item) => {
                 const active = item.label === "테마섬";
@@ -260,8 +268,6 @@ export default function ThemePage() {
             </div>
           </div>
 
-          {/* 네비바 아래 여백 */}
-          <div className="absolute" style={{ left: 0, right: 0, top: 808, bottom: 0, background: "#fff", borderRadius: "0 0 25px 25px" }} />
 
         </div>
       </div>
