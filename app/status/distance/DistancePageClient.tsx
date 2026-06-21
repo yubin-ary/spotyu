@@ -62,7 +62,7 @@ export default function DistancePageClient() {
             <button
               onClick={() => { if (selected === null) return; sessionStorage.setItem("spotyu_distance", options[selected].label); router.push("/status/condition"); }}
               style={{ width: "100%", height: 60, borderRadius: 10, border: "none", backgroundColor: selected !== null ? "#ffbf00" : "#e0e0e0", fontSize: 16, fontWeight: 600, color: "#111", letterSpacing: "-0.4px", cursor: selected !== null ? "pointer" : "not-allowed" }}>
-              탐색하기
+              다음
             </button>
           </div>
         </div>
