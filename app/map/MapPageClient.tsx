@@ -663,10 +663,10 @@ export default function MapPageClient() {
           </div>
 
           {/* Solid white base behind nav – covers sheet content bleeding through */}
-          <div style={{ position: "absolute", left: 0, top: 745, right: 0, bottom: -2, background: "#fff", zIndex: 24 }} />
+          <div style={{ position: "absolute", left: 0, bottom: -2, right: 0, height: 72, background: "#fff", zIndex: 24 }} />
 
           {/* Bottom navigation – top=745, height=63 */}
-          <div style={{ position: "absolute", left: 0, right: 0, top: 745, height: 63, zIndex: 25 }}>
+          <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 63, zIndex: 25 }}>
             {/* Wave background */}
             <div style={{ position: "absolute", left: -10, right: -10, top: -7, height: 70 }}>
               <img src={imgNavBg} alt="" style={{ width: "100%", height: "100%", display: "block" }} />
