@@ -192,8 +192,10 @@ export default function IslandPage({ params }: { params: Promise<{ type: string 
               zIndex: 10,
             }}
           >
-            <svg width="22" height="20" viewBox="0 0 14 17" fill="none">
-              <path d="M2 1.5h10v14L7 12 2 15.5V1.5Z" stroke="#fff" strokeWidth="1.6" strokeLinejoin="round" fill="none" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" strokeWidth="1.8" strokeLinejoin="round" fill="none" />
+              <line x1="12" y1="7" x2="12" y2="13" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+              <line x1="9" y1="10" x2="15" y2="10" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
             <span style={{ fontSize: 14, fontWeight: 500, color: "#fff", letterSpacing: "-0.35px", marginTop: 2 }}>제보</span>
           </button>

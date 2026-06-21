@@ -145,7 +145,7 @@ export default function ThemePage() {
             className="absolute"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            style={{ left: 0, top: 198, width: 390, height: 430, overflow: "hidden" }}
+            style={{ left: 0, top: 230, width: 390, height: 430, overflow: "visible" }}
           >
             {ISLANDS.map((isl, i) => {
               const offset = i - index;          // -1, 0, 1, 2 …
@@ -223,7 +223,7 @@ export default function ThemePage() {
             })}
           </div>
 
-          <div className="absolute" style={{ left: 0, right: 0, top: 636, display: "flex", justifyContent: "center", gap: 7 }}>
+          <div className="absolute" style={{ left: 0, right: 0, top: 668, display: "flex", justifyContent: "center", gap: 7, zIndex: 10 }}>
             {ISLANDS.map((_, i) => (
               <button
                 key={i}
