@@ -89,8 +89,10 @@ export default function ThemePage() {
   const touchStartX = useRef<number | null>(null);
 
   const [places, setPlaces] = useState<Place[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth <= 500);
     getPlaces()
       .then((data) => setPlaces(data))
       .catch((err) => console.error("장소 목록 로딩 실패:", err));
@@ -145,12 +147,16 @@ export default function ThemePage() {
             </p>
           </div>
 
-          {/* Spacer */}
-          <div style={{ flex: 0.6 }} />
+          {/* Spacer (PC only) */}
+          {!isMobile && <div style={{ flex: 0.6 }} />}
+          {isMobile && <div style={{ height: 28 }} />}
+
+          {/* Scrollable wrapper on mobile only */}
+          <div style={isMobile ? { flex: 1, overflowY: "auto", overflowX: "hidden", paddingBottom: 80 } : { flexShrink: 0 }}>
 
           {/* Card carousel + dots */}
           <div
-            style={{ flexShrink: 0, position: "relative", height: 420, overflow: "visible" }}
+            style={{ position: "relative", height: isMobile ? 490 : 420, overflow: "visible" }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -170,7 +176,7 @@ export default function ThemePage() {
                     top: isActive ? 0 : 16,
                     left: "50%",
                     width: CARD_W,
-                    height: isActive ? 420 : 390,
+                    height: isActive ? (isMobile ? 490 : 420) : (isMobile ? 460 : 390),
                     transform: `translateX(calc(-50% + ${x}px))`,
                     transition: "transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), top 0.35s, height 0.35s, opacity 0.35s",
                     backgroundColor: "#ffc933",
@@ -226,7 +232,7 @@ export default function ThemePage() {
           </div>
 
           {/* Dot indicators – right below card */}
-          <div style={{ flexShrink: 0, height: 28, display: "flex", justifyContent: "center", alignItems: "center", gap: 7, marginTop: 14 }}>
+          <div style={{ height: 28, display: "flex", justifyContent: "center", alignItems: "center", gap: 7, marginTop: 14 }}>
             {ISLANDS.map((_, i) => (
               <button
                 key={i}
@@ -240,8 +246,10 @@ export default function ThemePage() {
             ))}
           </div>
 
-          {/* Spacer */}
-          <div style={{ flex: 1.4 }} />
+          </div>{/* end scroll wrapper */}
+
+          {/* Spacer (PC only) */}
+          {!isMobile && <div style={{ flex: 1.4 }} />}
 
           {/* Nav */}
           <div className="nav-bottom absolute" style={{ left: 0, right: 0, top: 745, height: 63, zIndex: 25 }}>
