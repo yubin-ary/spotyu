@@ -186,6 +186,8 @@ export default function ThemePage() {
                     cursor: isActive ? "default" : "pointer",
                     pointerEvents: Math.abs(offset) > 1 ? "none" : "auto",
                     zIndex: isActive ? 2 : 1,
+                    outline: "none",
+                    WebkitTapHighlightColor: "transparent",
                   }}
                 >
                   <p style={{ fontSize: 21, fontWeight: 800, color: "#3a2e10", letterSpacing: "-0.5px" }}>{isl.type}</p>
