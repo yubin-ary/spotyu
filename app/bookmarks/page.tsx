@@ -80,7 +80,7 @@ function BookmarkCard({ place, onClick, showBadge }: { place: Place; onClick: ()
       }}
     >
       {/* 더보기 */}
-      <div style={{ position: "absolute", top: 16, right: 8, display: "flex", alignItems: "center", gap: 3 }}>
+      <div style={{ position: "absolute", top: 16, right: 11, display: "flex", alignItems: "center", gap: 3 }}>
         <span style={{ fontSize: 12, fontWeight: 500, color: "#525252", letterSpacing: "-0.3px" }}>더보기</span>
         <div style={{ transform: "rotate(180deg)", width: 5, height: 10 }}>
           <img src={imgChevronRight} alt="" style={{ width: "100%", height: "100%" }} />
@@ -212,7 +212,7 @@ export default function BookmarksPage() {
             </div>
           </div>
 
-          <div className="absolute" style={{ top: 158, left: 24, right: 24, display: "flex", alignItems: "center", gap: 8 }}>
+          <div className="absolute" style={{ top: 158, left: 24, right: 24, display: "flex", alignItems: "center", gap: 8, overflowX: "auto", scrollbarWidth: "none" }}>
             {filters.map((f) => {
               const active = filter === f;
               return (
@@ -224,6 +224,7 @@ export default function BookmarksPage() {
                     color: active ? "#fff" : "#888",
                     border: "none", borderRadius: 20, padding: "6px 16px",
                     fontSize: 12, fontWeight: 600, cursor: "pointer", letterSpacing: "-0.3px",
+                    flexShrink: 0, whiteSpace: "nowrap",
                   }}
                 >
                   {f}
@@ -231,7 +232,7 @@ export default function BookmarksPage() {
               );
             })}
             <button
-              style={{ background: "#f2f2f2", color: "#888", border: "none", borderRadius: 20, width: 32, height: 30, fontSize: 16, cursor: "pointer" }}
+              style={{ background: "#f2f2f2", color: "#888", border: "none", borderRadius: 20, width: 32, height: 30, fontSize: 16, cursor: "pointer", flexShrink: 0 }}
             >
               ＋
             </button>
