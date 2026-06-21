@@ -301,13 +301,18 @@ export default function MapPageClient() {
   );
   const [isSnapping, setIsSnapping] = useState(false);
   const [recommendedIds, setRecommendedIds] = useState<number[] | null>(null);
+  const [savedRecommendedIds, setSavedRecommendedIds] = useState<number[] | null>(null);
   const [userLocation, setUserLocation] = useState<GeoPoint | undefined>(undefined);
   const [centerTrigger, setCenterTrigger] = useState(0);
 
   useEffect(() => {
     try {
       const raw = sessionStorage.getItem("spotyu_recommended_ids");
-      if (raw) setRecommendedIds(JSON.parse(raw));
+      if (raw) {
+        const ids = JSON.parse(raw);
+        setRecommendedIds(ids);
+        setSavedRecommendedIds(ids);
+      }
     } catch {}
   }, []);
 
@@ -396,8 +401,11 @@ export default function MapPageClient() {
   })();
 
   function dismissRecommendation() {
-    sessionStorage.removeItem("spotyu_recommended_ids");
     setRecommendedIds(null);
+  }
+
+  function restoreRecommendation() {
+    if (savedRecommendedIds) setRecommendedIds(savedRecommendedIds);
   }
 
   const sheetZIndex = sheetTop < 200 ? 22 : 15;
@@ -491,13 +499,17 @@ export default function MapPageClient() {
 
           {/* Filter bar – 추천 (left=21) + 보물함 (left=calc(50%+75px)=270px) */}
           <div style={{ position: "absolute", top: 162, left: 0, right: 0, zIndex: 20 }}>
-            <button style={{
-              position: "absolute", left: 21,
-              background: "#fff2cb", border: "1px solid #ffbf00", borderRadius: 20,
-              padding: "6px 20px", fontSize: 12, fontWeight: 500, color: "#525252",
-              letterSpacing: "-0.3px", cursor: "pointer",
-              boxShadow: "0px 2px 2px rgba(0,0,0,0.2)",
-            }}>
+            <button
+              onClick={restoreRecommendation}
+              style={{
+                position: "absolute", left: 21,
+                background: recommendedIds !== null ? "#ffbf00" : "#fff2cb",
+                border: "1px solid #ffbf00", borderRadius: 20,
+                padding: "6px 20px", fontSize: 12, fontWeight: 500, color: "#525252",
+                letterSpacing: "-0.3px", cursor: "pointer",
+                boxShadow: "0px 2px 2px rgba(0,0,0,0.2)",
+              }}
+            >
               추천
             </button>
 
