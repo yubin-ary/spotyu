@@ -152,7 +152,7 @@ export default function OnboardingPage() {
         </div>
 
         {/* Dot Indicators */}
-        <div className="absolute flex gap-[6px] items-center" style={{ top: 663, left: "50%", transform: "translateX(-50%)" }}>
+        <div className="absolute flex gap-[6px] items-center" style={{ bottom: "calc(116px + env(safe-area-inset-bottom, 0px))", left: "50%", transform: "translateX(-50%)" }}>
           {slide.dots.map((active, i) => (
             <div
               key={i}
@@ -175,8 +175,8 @@ export default function OnboardingPage() {
           className="absolute"
           style={{
             left: 24,
-            top: 732,
-            width: 339,
+            right: 24,
+            bottom: "calc(40px + env(safe-area-inset-bottom, 0px))",
             height: 60,
             backgroundColor: "#ffbf00",
             borderRadius: 10,

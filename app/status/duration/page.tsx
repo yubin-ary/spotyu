@@ -6,21 +6,10 @@ import { useRouter } from "next/navigation";
 const imgBackArrow = "/assets/45d8a0f6495680e676880af5da9c876d1c9d332b.svg";
 const imgSprite = "/assets/93f4b4820b17fbe3452435cdd0421d04ab86dd50.png";
 
-// Sprite 1448x1086px. Icon regions from canvas scan (non-white pixels, x=200-500 only).
-// Row1 clock: x=[229,435] y=[141,308] 206×167. Row2 calendar: x=[235,407] y=[448,609] 172×161. Row3 hourglass: x=[247,404] y=[751,924] 157×173.
 const options = [
-  {
-    label: "1시간 이하",
-    icon: { w: 56, h: 53, bgSize: "394px", bgPos: "-62px -34px" },
-  },
-  {
-    label: "1~3시간",
-    icon: { w: 58, h: 52, bgSize: "467px", bgPos: "-75px -145px" },
-  },
-  {
-    label: "3시간 이상",
-    icon: { w: 58, h: 55, bgSize: "460px", bgPos: "-75px -239px" },
-  },
+  { label: "1시간 이하",  icon: { w: 56, h: 53, bgSize: "394px", bgPos: "-62px -34px" } },
+  { label: "1~3시간",    icon: { w: 58, h: 52, bgSize: "467px", bgPos: "-75px -145px" } },
+  { label: "3시간 이상", icon: { w: 58, h: 55, bgSize: "460px", bgPos: "-75px -239px" } },
 ];
 
 export default function DurationPage() {
@@ -30,88 +19,53 @@ export default function DurationPage() {
   return (
     <div className="pf-outer">
       <div className="pf-sizing">
-        <div
-          className="pf-frame bg-[#f8f8f8] border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
-          style={{ width: "100%", height: "100%" }}
-        >
+        <div className="pf-frame bg-[#f8f8f8] border-2 border-[#111] border-solid overflow-clip rounded-[25px]"
+          style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
 
-          {/* Header */}
-          <div className="absolute" style={{ top: 45, left: 0, right: 0, height: 56 }}>
-            <button onClick={() => router.back()} className="absolute" style={{ left: 32, top: 7, width: 28, height: 28, background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-              <img alt="back" className="block size-full" src={imgBackArrow} />
+          <div style={{ flexShrink: 0, position: "relative", height: 101, paddingTop: 45 }}>
+            <button onClick={() => router.back()} style={{ position: "absolute", left: 32, top: 52, width: 28, height: 28, background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+              <img alt="back" style={{ width: "100%", height: "100%", display: "block" }} src={imgBackArrow} />
             </button>
-            <p className="absolute text-center" style={{ left: "50%", transform: "translateX(-50%)", top: 14, fontSize: 22, fontWeight: 500, color: "#111", whiteSpace: "nowrap", lineHeight: 1.5 }}>
-              추천
-            </p>
+            <p style={{ textAlign: "center", fontSize: 22, fontWeight: 500, color: "#111", lineHeight: 1.5, marginTop: 14 }}>추천</p>
           </div>
 
-          {/* Step label */}
-          <p className="absolute whitespace-nowrap" style={{ left: 23, top: 129, fontSize: 14, fontWeight: 500, color: "#111", letterSpacing: "-0.35px", lineHeight: 1.5 }}>
-            STEP 2
-          </p>
+          <div style={{ flexShrink: 0, padding: "0 21px 20px" }}>
+            <p style={{ fontSize: 14, fontWeight: 500, color: "#111", letterSpacing: "-0.35px", lineHeight: 1.5, marginBottom: 4 }}>STEP 2</p>
+            <p style={{ fontSize: 22, fontWeight: 600, color: "#111", letterSpacing: "-0.55px", lineHeight: 1.5 }}>얼마나 공부할 계획인가요?</p>
+          </div>
 
-          {/* Question */}
-          <p className="absolute whitespace-nowrap" style={{ left: 21, top: 150, fontSize: 22, fontWeight: 600, color: "#111", letterSpacing: "-0.55px", lineHeight: 1.5 }}>
-            얼마나 공부할 계획인가요?
-          </p>
-
-          {/* Options */}
-          <div className="absolute flex flex-col" style={{ left: 37, top: 225, width: 313, gap: 12 }}>
-            {options.map((opt, i) => {
-              const isSelected = selected === i;
-              return (
-                <button
-                  key={i}
-                  onClick={() => setSelected(i)}
-                  className="flex items-center rounded-[10px]"
-                  style={{
-                    height: 80,
-                    width: "100%",
-                    paddingLeft: 27,
-                    paddingRight: 20,
-                    gap: 12,
-                    border: isSelected ? "2px solid #ffbf00" : "1px solid #f0f0f0",
-                    backgroundColor: isSelected ? "#fff8e2" : "#ffffff",
-                    boxShadow: isSelected ? "0px 0px 6px rgba(255,191,0,0.24)" : "none",
-                    cursor: "pointer",
-                    textAlign: "left",
-                  }}
-                >
-                  <div
+          <div style={{ flex: 1, overflowY: "auto", minHeight: 0, padding: "0 37px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, paddingBottom: 16 }}>
+              {options.map((opt, i) => {
+                const isSelected = selected === i;
+                return (
+                  <button key={i} onClick={() => setSelected(i)}
                     style={{
-                      flexShrink: 0,
-                      width: opt.icon.w,
-                      height: opt.icon.h,
-                      backgroundImage: `url(${imgSprite})`,
-                      backgroundSize: opt.icon.bgSize,
-                      backgroundPosition: opt.icon.bgPos,
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  />
-                  <span style={{ fontSize: 16, fontWeight: 500, color: "#111", letterSpacing: "-0.4px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
-                    {opt.label}
-                  </span>
-                </button>
-              );
-            })}
+                      height: 80, width: "100%", display: "flex", alignItems: "center",
+                      paddingLeft: 27, paddingRight: 20, gap: 12, borderRadius: 10,
+                      border: isSelected ? "2px solid #ffbf00" : "1px solid #f0f0f0",
+                      backgroundColor: isSelected ? "#fff8e2" : "#ffffff",
+                      boxShadow: isSelected ? "0px 0px 6px rgba(255,191,0,0.24)" : "none",
+                      cursor: "pointer", textAlign: "left", flexShrink: 0,
+                    }}>
+                    <div style={{ flexShrink: 0, width: opt.icon.w, height: opt.icon.h,
+                      backgroundImage: `url(${imgSprite})`, backgroundSize: opt.icon.bgSize,
+                      backgroundPosition: opt.icon.bgPos, backgroundRepeat: "no-repeat" }} />
+                    <span style={{ fontSize: 16, fontWeight: 500, color: "#111", letterSpacing: "-0.4px", lineHeight: 1.5, whiteSpace: "nowrap" }}>{opt.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Next button */}
-          <button
-            onClick={() => {
-              if (selected === null) return;
-              sessionStorage.setItem("spotyu_duration", options[selected].label);
-              router.push("/status/distance");
-            }}
-            className="absolute flex items-center justify-center rounded-[10px]"
-            style={{
-              left: 24, top: 732, width: 339, height: 60,
-              backgroundColor: selected !== null ? "#ffbf00" : "#e0e0e0",
-              border: "none", cursor: selected !== null ? "pointer" : "not-allowed",
-            }}
-          >
-            <span style={{ fontSize: 16, fontWeight: 600, color: "#111", letterSpacing: "-0.4px", lineHeight: 1.5 }}>다음</span>
-          </button>        </div>
+          <div style={{ flexShrink: 0, padding: "12px 24px", paddingBottom: "calc(24px + env(safe-area-inset-bottom, 0px))" }}>
+            <button
+              onClick={() => { if (selected === null) return; sessionStorage.setItem("spotyu_duration", options[selected].label); router.push("/status/distance"); }}
+              style={{ width: "100%", height: 60, borderRadius: 10, border: "none", backgroundColor: selected !== null ? "#ffbf00" : "#e0e0e0", fontSize: 16, fontWeight: 600, color: "#111", letterSpacing: "-0.4px", cursor: selected !== null ? "pointer" : "not-allowed" }}>
+              다음
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -11,8 +11,8 @@ export default function SplashStartButton() {
       className="absolute flex items-center justify-center rounded-[10px] cursor-pointer"
       style={{
         left: 24,
-        top: 732,
-        width: 339,
+        right: 24,
+        bottom: "calc(40px + env(safe-area-inset-bottom, 0px))",
         height: 60,
         backgroundColor: "#ffbf00",
         border: "none",

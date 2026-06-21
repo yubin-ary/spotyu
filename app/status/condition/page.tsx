@@ -34,96 +34,89 @@ export default function ConditionPage() {
   return (
     <div className="pf-outer">
       <div className="pf-sizing">
-        <div
-          className="pf-frame bg-[#f8f8f8] border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
-          style={{ width: "100%", height: "100%" }}
-        >
+        <div className="pf-frame bg-[#f8f8f8] border-2 border-[#111] border-solid overflow-clip rounded-[25px]"
+          style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
+
           {/* Header */}
-          <div className="absolute" style={{ top: 45, left: 0, right: 0, height: 56 }}>
-            <button onClick={() => router.back()} className="absolute" style={{ left: 32, top: 7, width: 28, height: 28, background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-              <img alt="back" className="block size-full" src={imgBackArrow} />
+          <div style={{ flexShrink: 0, position: "relative", height: 101, paddingTop: 45 }}>
+            <button onClick={() => router.back()} style={{ position: "absolute", left: 32, top: 52, width: 28, height: 28, background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+              <img alt="back" style={{ width: "100%", height: "100%", display: "block" }} src={imgBackArrow} />
             </button>
-            <p className="absolute text-center" style={{ left: "50%", transform: "translateX(-50%)", top: 14, fontSize: 22, fontWeight: 500, color: "#111", whiteSpace: "nowrap", lineHeight: 1.5 }}>
-              추천
-            </p>
+            <p style={{ textAlign: "center", fontSize: 22, fontWeight: 500, color: "#111", lineHeight: 1.5, marginTop: 14 }}>추천</p>
           </div>
 
-          {/* Step label */}
-          <p className="absolute whitespace-nowrap" style={{ left: 23, top: 129, fontSize: 14, fontWeight: 500, color: "#111", letterSpacing: "-0.35px", lineHeight: 1.5 }}>
-            STEP 4
-          </p>
-
-          {/* Question */}
-          <p className="absolute whitespace-nowrap" style={{ left: 21, top: 150, fontSize: 22, fontWeight: 600, color: "#111", letterSpacing: "-0.55px", lineHeight: 1.5 }}>
-            지금 어떤 상태인가요?
-          </p>
+          {/* Step + Question */}
+          <div style={{ flexShrink: 0, padding: "0 21px 20px" }}>
+            <p style={{ fontSize: 14, fontWeight: 500, color: "#111", letterSpacing: "-0.35px", lineHeight: 1.5, marginBottom: 4 }}>STEP 4</p>
+            <p style={{ fontSize: 22, fontWeight: 600, color: "#111", letterSpacing: "-0.55px", lineHeight: 1.5 }}>지금 어떤 상태인가요?</p>
+          </div>
 
           {/* Options */}
-          <div className="absolute flex flex-col" style={{ left: 34, top: 225, width: 313, gap: 12 }}>
-            {options.map((opt, i) => {
-              const isSelected = selected === i;
-              return (
-                <button
-                  key={i}
-                  onClick={() => setSelected(i)}
-                  className="flex items-center rounded-[10px]"
-                  style={{
-                    height: 80, width: "100%",
-                    paddingLeft: 27, paddingRight: 20, gap: 12,
-                    border: isSelected ? "2px solid #ffbf00" : "1px solid #f0f0f0",
-                    backgroundColor: isSelected ? "#fff8e2" : "#ffffff",
-                    boxShadow: isSelected ? "0px 0px 6px rgba(255,191,0,0.24)" : "none",
-                    cursor: "pointer", textAlign: "left",
-                  }}
-                >
-                  <div style={{ width: opt.icon.w, height: opt.icon.h, position: "relative", flexShrink: 0, overflow: "hidden" }}>
-                    <img
-                      alt="" src={opt.icon.src}
-                      style={{ position: "absolute", width: opt.icon.imgW, height: opt.icon.imgH, left: opt.icon.imgL, top: opt.icon.imgT, maxWidth: "none", pointerEvents: "none" }}
-                    />
-                  </div>
-                  <span style={{ fontSize: 16, fontWeight: 500, color: "#111", letterSpacing: "-0.4px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
-                    {opt.label}
-                  </span>
-                </button>
-              );
-            })}
+          <div style={{ flex: 1, overflowY: "auto", minHeight: 0, padding: "0 34px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, paddingBottom: 16 }}>
+              {options.map((opt, i) => {
+                const isSelected = selected === i;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setSelected(i)}
+                    style={{
+                      height: 80, width: "100%", display: "flex", alignItems: "center",
+                      paddingLeft: 27, paddingRight: 20, gap: 12, borderRadius: 10,
+                      border: isSelected ? "2px solid #ffbf00" : "1px solid #f0f0f0",
+                      backgroundColor: isSelected ? "#fff8e2" : "#ffffff",
+                      boxShadow: isSelected ? "0px 0px 6px rgba(255,191,0,0.24)" : "none",
+                      cursor: "pointer", textAlign: "left", flexShrink: 0,
+                    }}
+                  >
+                    <div style={{ width: opt.icon.w, height: opt.icon.h, position: "relative", flexShrink: 0, overflow: "hidden" }}>
+                      <img alt="" src={opt.icon.src}
+                        style={{ position: "absolute", width: opt.icon.imgW, height: opt.icon.imgH, left: opt.icon.imgL, top: opt.icon.imgT, maxWidth: "none", pointerEvents: "none" }} />
+                    </div>
+                    <span style={{ fontSize: 16, fontWeight: 500, color: "#111", letterSpacing: "-0.4px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
+                      {opt.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Next button */}
-          <button
-            onClick={async () => {
-              if (selected === null || submitting) return;
-              setSubmitting(true);
-              const conditionLabel = options[selected].label;
-              sessionStorage.setItem("spotyu_condition", conditionLabel);
-              const purpose = sessionStorage.getItem("spotyu_purpose") ?? "";
-              const duration = sessionStorage.getItem("spotyu_duration") ?? "";
-              const distance = sessionStorage.getItem("spotyu_distance") ?? "";
-              try {
-                const res = await fetch("/api/recommend", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ purpose, duration, distance, condition: conditionLabel }),
-                });
-                const data = await res.json();
-                sessionStorage.setItem("spotyu_recommended_ids", JSON.stringify(data.ids ?? []));
-              } catch {
-                sessionStorage.setItem("spotyu_recommended_ids", JSON.stringify([]));
-              }
-              router.push("/status/loading");
-            }}
-            className="absolute flex items-center justify-center rounded-[10px]"
-            style={{
-              left: 24, top: 732, width: 339, height: 60,
-              backgroundColor: selected !== null && !submitting ? "#ffbf00" : "#e0e0e0",
-              border: "none", cursor: selected !== null && !submitting ? "pointer" : "not-allowed",
-            }}
-          >
-            <span style={{ fontSize: 16, fontWeight: 600, color: "#111", letterSpacing: "-0.4px", lineHeight: 1.5 }}>
+          {/* CTA Button */}
+          <div style={{ flexShrink: 0, padding: "12px 24px", paddingBottom: "calc(24px + env(safe-area-inset-bottom, 0px))" }}>
+            <button
+              onClick={async () => {
+                if (selected === null || submitting) return;
+                setSubmitting(true);
+                const conditionLabel = options[selected].label;
+                sessionStorage.setItem("spotyu_condition", conditionLabel);
+                const purpose = sessionStorage.getItem("spotyu_purpose") ?? "";
+                const duration = sessionStorage.getItem("spotyu_duration") ?? "";
+                const distance = sessionStorage.getItem("spotyu_distance") ?? "";
+                try {
+                  const res = await fetch("/api/recommend", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ purpose, duration, distance, condition: conditionLabel }),
+                  });
+                  const data = await res.json();
+                  sessionStorage.setItem("spotyu_recommended_ids", JSON.stringify(data.ids ?? []));
+                } catch {
+                  sessionStorage.setItem("spotyu_recommended_ids", JSON.stringify([]));
+                }
+                router.push("/status/loading");
+              }}
+              style={{
+                width: "100%", height: 60, borderRadius: 10, border: "none",
+                backgroundColor: selected !== null && !submitting ? "#ffbf00" : "#e0e0e0",
+                fontSize: 16, fontWeight: 600, color: "#111", letterSpacing: "-0.4px",
+                cursor: selected !== null && !submitting ? "pointer" : "not-allowed",
+              }}
+            >
               {submitting ? "추천 받는 중..." : "탐색하기"}
-            </span>
-          </button>        </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
