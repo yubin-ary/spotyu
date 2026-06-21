@@ -66,9 +66,21 @@ body {
   .pf-frame {
     border: none !important;
     border-radius: 0 !important;
-    /* Safari safe area */
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Nav bar: switch from top:745 to bottom:0 on mobile */
+  .nav-bottom {
+    top: auto !important;
+    bottom: 0 !important;
+    height: 63px !important;
+  }
+
+  .nav-bg-fill {
+    top: auto !important;
+    bottom: 0 !important;
+    height: 70px !important;
   }
 }
 

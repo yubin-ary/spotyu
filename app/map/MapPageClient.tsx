@@ -458,7 +458,11 @@ export default function MapPageClient() {
               );
             }}
             style={{
-              position: "absolute", right: 16, top: Math.max(SHEET_DEFAULT - 60, sheetTop - 60), zIndex: sheetZIndex - 1,
+              position: "absolute", right: 16,
+              top: recommendedIds !== null
+                ? Math.max(SHEET_DEFAULT - 48 - 8 - 44, sheetTop - 48 - 8 - 44)
+                : Math.max(SHEET_DEFAULT - 60, sheetTop - 60),
+              zIndex: sheetZIndex - 1,
               width: 44, height: 44, borderRadius: "50%",
               background: "#fff", border: "none", cursor: "pointer",
               boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
@@ -507,7 +511,7 @@ export default function MapPageClient() {
           </div>
 
           {/* Filter bar – 추천 (left=21) + 보물함 (left=calc(50%+75px)=270px) */}
-          <div style={{ position: "absolute", top: 126, left: 0, right: 0, zIndex: 20 }}>
+          <div style={{ position: "absolute", top: 132, left: 0, right: 0, zIndex: 20 }}>
             <button
               onClick={() => recommendedIds !== null ? dismissRecommendation() : restoreRecommendation()}
               style={{
@@ -663,10 +667,10 @@ export default function MapPageClient() {
           </div>
 
           {/* Solid white base behind nav – covers sheet content bleeding through */}
-          <div style={{ position: "absolute", left: 0, top: 745, right: 0, bottom: -2, background: "#fff", zIndex: 24 }} />
+          <div className="nav-bg-fill" style={{ position: "absolute", left: 0, top: 745, right: 0, bottom: -2, background: "#fff", zIndex: 24 }} />
 
-          {/* Bottom navigation – top=745, height=63 */}
-          <div style={{ position: "absolute", left: 0, right: 0, top: 745, height: 63, zIndex: 25 }}>
+          {/* Bottom navigation */}
+          <div className="nav-bottom" style={{ position: "absolute", left: 0, right: 0, top: 745, height: 63, zIndex: 25 }}>
             {/* Wave background */}
             <div style={{ position: "absolute", left: -10, right: -10, top: -7, height: 70 }}>
               <img src={imgNavBg} alt="" style={{ width: "100%", height: "100%", display: "block" }} />
