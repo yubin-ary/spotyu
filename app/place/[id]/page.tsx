@@ -228,7 +228,10 @@ export default function PlaceDetailPage({ params }: { params: Promise<{ id: stri
                     ...(r.noise ? [`소음 ${r.noise}`] : []),
                     ...r.keywords,
                   ]);
-                  const allTags = [...new Set([...place.visitTags, ...reviewTags])].slice(0, 5);
+                  const allRaw = [...place.visitTags, ...reviewTags];
+                  const countMap: Record<string, number> = {};
+                  allRaw.forEach((t) => { countMap[t] = (countMap[t] ?? 0) + 1; });
+                  const allTags = Object.entries(countMap).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([t]) => t);
                   if (allTags.length === 0) return <p style={{ fontSize: 13, color: "#aeaeae" }}>아직 태그가 없어요.</p>;
                   return (
                     <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>

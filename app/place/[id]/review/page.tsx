@@ -101,12 +101,16 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
   const [selYear,  setSelYear]  = useState(today.getFullYear());
   const [selMonth, setSelMonth] = useState(today.getMonth() + 1);
   const [selDay,   setSelDay]   = useState(today.getDate());
-  const [visitTime,    setVisitTime]    = useState("11:00");
+  const nowTime = (() => { const n = new Date(); return `${String(n.getHours()).padStart(2,"0")}:${String(n.getMinutes()).padStart(2,"0")}`; })();
+  const [visitTime,    setVisitTime]    = useState(nowTime);
   const [showCalendar, setShowCalendar] = useState(false);
   const [editingTime,  setEditingTime]  = useState(false);
   const [seats,    setSeats]    = useState<string | null>(null);
   const [noise,    setNoise]    = useState<string | null>(null);
   const [keywords, setKeywords] = useState<string[]>([]);
+  const [customKeywords, setCustomKeywords] = useState<string[]>([]);
+  const [showCustomInput, setShowCustomInput] = useState(false);
+  const [customInput, setCustomInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const visitDate = formatKoreanDate(selYear, selMonth, selDay);
@@ -119,7 +123,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
     if (submitting) return;
     setSubmitting(true);
     try {
-      await saveReview(id, { visitDate, visitTime, seats, noise, keywords });
+      await saveReview(id, { visitDate, visitTime, seats, noise, keywords: [...keywords, ...customKeywords] });
       const isoDate = new Date().toISOString();
       await saveVisitHistory(id, seats, noise, isoDate);
       // router.back()이 히스토리 없을 때 실패할 수 있으므로 명시적 경로 이동
@@ -136,12 +140,12 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
 
   function chip(selected: boolean) {
     return {
-      height: 39, display: "flex", alignItems: "center", justifyContent: "center",
-      padding: "0 24px", borderRadius: 20, cursor: "pointer",
-      background: selected ? "#ffe38e" : "#ececec",
-      border: selected ? "1px solid #ffbf00" : "1px solid transparent",
-      fontSize: 16, fontWeight: 500, color: "#525252" as const,
-      letterSpacing: "-0.32px", whiteSpace: "nowrap" as const, flexShrink: 0,
+      height: 33, display: "flex", alignItems: "center", justifyContent: "center",
+      padding: "0 16px", borderRadius: 16, cursor: "pointer",
+      background: selected ? "#ffbf00" : "#ececec",
+      border: "1px solid transparent",
+      fontSize: 13, fontWeight: selected ? 700 : 500, color: selected ? "#3a2e10" as const : "#525252" as const,
+      letterSpacing: "-0.26px", whiteSpace: "nowrap" as const, flexShrink: 0,
       boxSizing: "border-box" as const,
     };
   }
@@ -204,10 +208,10 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
                 방문한 스팟은<br />어땠나요?
               </p>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: 42, margin: "26px 30px 0" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 28, margin: "20px 30px 0" }}>
                 {/* 언제 방문하셨나요? */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  <p style={{ fontSize: 20, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>언제 방문하셨나요?</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <p style={{ fontSize: 15, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>언제 방문하셨나요?</p>
                   <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
                     <div onClick={() => { setShowCalendar(true); setEditingTime(false); }} style={chip(true)}>{visitDate}</div>
                     <div onClick={() => { setEditingTime(true); setShowCalendar(false); }} style={chip(true)}>{visitTime}</div>
@@ -215,26 +219,39 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
                 </div>
 
                 {/* 좌석 여유 */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  <p style={{ fontSize: 20, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>좌석 여유는 어땠나요?</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <p style={{ fontSize: 15, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>좌석 여유는 어땠나요?</p>
                   <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
                     {SEATS.map(s => <div key={s} onClick={() => setSeats(s === seats ? null : s)} style={chip(seats === s)}>{s}</div>)}
                   </div>
                 </div>
 
                 {/* 소음 */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  <p style={{ fontSize: 20, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>소음은 어느 정도였나요?</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <p style={{ fontSize: 15, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>소음은 어느 정도였나요?</p>
                   <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
                     {NOISES.map(n => <div key={n} onClick={() => setNoise(n === noise ? null : n)} style={chip(noise === n)}>{n}</div>)}
                   </div>
                 </div>
 
                 {/* 키워드 */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  <p style={{ fontSize: 20, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>공간 키워드는?</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <p style={{ fontSize: 15, fontWeight: 600, color: "#525252", letterSpacing: "-0.4px", lineHeight: 1.5, margin: 0 }}>공간 키워드는?</p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                     {KEYWORDS.map(kw => <div key={kw} onClick={() => toggleKeyword(kw)} style={chip(keywords.includes(kw))}>{kw}</div>)}
+                    {customKeywords.map(kw => (
+                      <div key={kw} onClick={() => setCustomKeywords(prev => prev.filter(x => x !== kw))} style={chip(true)}>{kw} ×</div>
+                    ))}
+                    {showCustomInput ? (
+                      <form onSubmit={(e) => { e.preventDefault(); const val = customInput.trim(); if (val && !customKeywords.includes(val)) setCustomKeywords(prev => [...prev, val]); setCustomInput(""); setShowCustomInput(false); }} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <input autoFocus value={customInput} onChange={(e) => setCustomInput(e.target.value)} onBlur={() => { setShowCustomInput(false); setCustomInput(""); }} placeholder="키워드 입력" style={{ border: "1.5px solid #ffbf00", borderRadius: 16, padding: "6px 12px", fontSize: 13, outline: "none", color: "#333", background: "#fff8e6", width: 90, height: 33, boxSizing: "border-box" }} />
+                        <button type="submit" onMouseDown={(e) => e.preventDefault()} style={{ height: 33, background: "#ffbf00", border: "none", borderRadius: 16, padding: "0 12px", fontSize: 13, fontWeight: 700, color: "#3a2e10", cursor: "pointer" }}>추가</button>
+                      </form>
+                    ) : (
+                      <div onClick={() => setShowCustomInput(true)} style={{ width: 33, height: 33, borderRadius: 16, background: "#ececec", border: "1px solid transparent", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}>
+                        <span style={{ fontSize: 18, color: "#888", lineHeight: 1 }}>+</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
