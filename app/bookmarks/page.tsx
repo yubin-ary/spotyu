@@ -258,7 +258,7 @@ export default function BookmarksPage() {
 
           {/* Nav – 지도 페이지와 동일한 스타일 */}
           <div className="absolute" style={{ left: 0, right: 0, top: 745, height: 63 }}>
-            <div style={{ position: "absolute", left: -2, right: -2, top: -7, height: 70 }}>
+            <div style={{ position: "absolute", left: -10, right: -10, top: -7, height: 70 }}>
               <img src={imgNavBg} alt="" style={{ width: "100%", height: "100%", display: "block" }} />
             </div>
             <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", alignItems: "center", height: "100%", padding: "20px 0 0 0" }}>
