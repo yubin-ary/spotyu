@@ -138,8 +138,8 @@ export default function IslandPage({ params }: { params: Promise<{ type: string 
   }, []);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#f3f4f6" }}>
-      <div style={{ width: 390, height: 844, position: "relative" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
         <div style={{
           width: "100%", height: "100%",
           border: "2px solid #111", borderRadius: 25, overflow: "hidden",
@@ -199,8 +199,6 @@ export default function IslandPage({ params }: { params: Promise<{ type: string 
             </svg>
             <span style={{ fontSize: 14, fontWeight: 500, color: "#fff", letterSpacing: "-0.35px", marginTop: 2 }}>제보</span>
           </button>
-
-          {/* Home indicator */}
         </div>
       </div>
     </div>

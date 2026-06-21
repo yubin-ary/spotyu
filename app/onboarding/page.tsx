@@ -92,12 +92,11 @@ export default function OnboardingPage() {
   const ill = slide.illustration;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="pf-outer">
+      <div className="pf-sizing">
       <div
-        className="relative overflow-hidden select-none"
+        className="pf-frame relative overflow-hidden select-none"
         style={{
-          width: 390,
-          height: 844,
           background: "#fefefe",
           border: "2px solid #111",
           borderRadius: 25,
@@ -195,6 +194,7 @@ export default function OnboardingPage() {
           {slide.button}
         </button>
 
+      </div>
       </div>
     </div>
   );

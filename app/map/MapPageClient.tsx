@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { GeoPoint, Place } from "../data/mockPlaces";
 import { getPlaces, searchPlaces } from "../services/placeService";
+import { getBookmarks, addBookmark, removeBookmark, type BookmarkEntry } from "../services/bookmarkService";
 import KakaoMapView from "./KakaoMapView";
 
 // Assets
@@ -220,7 +221,7 @@ function PlaceCard({ place, onClick, onDetailClick }: { place: Place; onClick: (
   );
 }
 
-function PlaceDetailCard({ place, onClose, onDetailClick }: { place: Place; onClose: () => void; onDetailClick: () => void }) {
+function PlaceDetailCard({ place, onClose, onDetailClick, saved, onToggleSave }: { place: Place; onClose: () => void; onDetailClick: () => void; saved: boolean; onToggleSave: () => void }) {
   const cat = CATEGORY_COLORS[place.category] ?? { bg: "#f0f0f0", text: "#666" };
   return (
     <div style={{ paddingTop: 8 }}>
@@ -239,11 +240,16 @@ function PlaceDetailCard({ place, onClose, onDetailClick }: { place: Place; onCl
           <img src={place.imageUrl} alt={place.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
         </div>
         <div style={{ flex: 1, minWidth: 0, overflow: "hidden", display: "flex", flexDirection: "column", gap: 4 }}>
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 6, minWidth: 0, overflow: "hidden" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0, overflow: "hidden" }}>
             <span style={{ fontSize: 20, fontWeight: 600, color: "#111", letterSpacing: "-0.5px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>{place.name}</span>
             <span style={{ fontSize: 12, fontWeight: 500, color: cat.text, background: cat.bg, borderRadius: 6, padding: "2px 10px", marginBottom: 2, whiteSpace: "nowrap", flexShrink: 0 }}>
               {place.category}
             </span>
+            <button onClick={onToggleSave} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", marginLeft: "auto", flexShrink: 0 }}>
+              <svg width="13" height="16" viewBox="0 0 14 17" fill={saved ? "#ffbf00" : "none"}>
+                <path d="M2 1.5h10v14L7 12 2 15.5V1.5Z" stroke={saved ? "#ffbf00" : "#ccc"} strokeWidth="1.4" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
           <div style={{ display: "flex", alignItems: "flex-start", gap: 6, minWidth: 0 }}>
             <span style={{ fontSize: 12, color: "#767676", flexShrink: 0, lineHeight: 1.4 }}>🕐</span>
@@ -292,6 +298,7 @@ export default function MapPageClient() {
   const searchParams = useSearchParams();
   const [allPlaces, setAllPlaces] = useState<Place[]>([]);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+  const [bookmarkEntries, setBookmarkEntries] = useState<BookmarkEntry[]>([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("전체 보물함");
   const [searchQuery, setSearchQuery] = useState("");
@@ -342,6 +349,7 @@ export default function MapPageClient() {
         }
       })
       .catch((err) => console.error("장소 목록 로딩 실패:", err));
+    getBookmarks().then(({ entries }) => setBookmarkEntries(entries)).catch(() => {});
   }, [searchParams]);
 
   useEffect(() => {
@@ -413,9 +421,9 @@ export default function MapPageClient() {
 
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#f3f4f6" }}>
-      <div style={{ width: 390, height: 844, position: "relative" }}>
-        <div style={{ width: "100%", height: "100%", border: "2px solid #111", borderRadius: 25, overflow: "hidden", position: "relative", background: "#fff" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
+        <div className="pf-frame" style={{ width: "100%", height: "100%", border: "2px solid #111", borderRadius: 25, overflow: "hidden", position: "relative", background: "#fff" }}>
 
           {/* Map background — 카카오 지도로 교체 */}
           <div
@@ -630,7 +638,22 @@ export default function MapPageClient() {
               gap: 8,
             }}>
               {selectedPlace ? (
-                <PlaceDetailCard place={selectedPlace} onClose={() => setSelectedPlace(null)} onDetailClick={() => router.push(`/place/${selectedPlace.id}`)} />
+                <PlaceDetailCard
+                  place={selectedPlace}
+                  onClose={() => setSelectedPlace(null)}
+                  onDetailClick={() => router.push(`/place/${selectedPlace.id}`)}
+                  saved={bookmarkEntries.some(e => e.placeId === selectedPlace.id)}
+                  onToggleSave={async () => {
+                    const entry = bookmarkEntries.find(e => e.placeId === selectedPlace.id);
+                    if (entry) {
+                      await removeBookmark(entry.bookmarkId);
+                      setBookmarkEntries(prev => prev.filter(e => e.bookmarkId !== entry.bookmarkId));
+                    } else {
+                      const newId = await addBookmark(selectedPlace.id);
+                      if (newId !== null) setBookmarkEntries(prev => [...prev, { bookmarkId: newId, placeId: selectedPlace.id }]);
+                    }
+                  }}
+                />
               ) : (
                 filteredPlaces.map((place) => (
                   <PlaceCard key={place.id} place={place} onClick={() => setSelectedPlace(place)} onDetailClick={() => setSelectedPlace(place)} />
@@ -678,11 +701,6 @@ export default function MapPageClient() {
               ))}
             </div>
           </div>
-
-          {/* Home indicator */}
-          <div style={{ position: "absolute", bottom: -2, left: "50%", transform: "translateX(-50%)", width: 390, height: 34, overflow: "hidden", zIndex: 26 }}>
-          </div>
-
         </div>
       </div>
     </div>

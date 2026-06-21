@@ -20,9 +20,9 @@ export default function ReviewsPage({ params }: { params: Promise<{ id: string }
   }, [id]);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#f3f4f6" }}>
-      <div style={{ width: 390, height: 844, position: "relative" }}>
-        <div style={{ width: "100%", height: "100%", border: "2px solid #111", borderRadius: 25, overflow: "hidden", position: "relative", background: "#fff" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
+        <div className="pf-frame" style={{ width: "100%", height: "100%", border: "2px solid #111", borderRadius: 25, overflow: "hidden", position: "relative", background: "#fff" }}>
 
           {/* Header */}
           <div style={{ position: "absolute", top: 43, left: 0, right: 0, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>

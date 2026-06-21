@@ -28,10 +28,10 @@ export default function DurationPage() {
   const router = useRouter();
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div style={{ width: 390, height: 844, position: "relative" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
         <div
-          className="bg-[#f8f8f8] border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
+          className="pf-frame bg-[#f8f8f8] border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
           style={{ width: "100%", height: "100%" }}
         >
 
@@ -111,12 +111,7 @@ export default function DurationPage() {
             }}
           >
             <span style={{ fontSize: 16, fontWeight: 600, color: "#111", letterSpacing: "-0.4px", lineHeight: 1.5 }}>다음</span>
-          </button>
-
-          {/* Home indicator */}
-          <div className="absolute overflow-clip" style={{ bottom: -2, left: "50%", transform: "translateX(-50%)", width: 390, height: 34 }}>
-          </div>
-        </div>
+          </button>        </div>
       </div>
     </div>
   );

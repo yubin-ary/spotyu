@@ -112,10 +112,10 @@ export default function ThemePage() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div style={{ width: 390, height: 844, position: "relative" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
         <div
-          className="border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
+          className="pf-frame border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
           style={{
             width: "100%",
             height: "100%",

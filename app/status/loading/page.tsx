@@ -15,8 +15,8 @@ export default function LoadingPage() {
   }, [router]);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#f3f4f6" }}>
-      <div style={{ width: 390, height: 844, position: "relative" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
         <div style={{
           width: "100%", height: "100%",
           border: "2px solid #111", borderRadius: 45, overflow: "hidden",
@@ -66,9 +66,6 @@ export default function LoadingPage() {
               </div>
             </div>
           </div>
-
-          {/* Home indicator */}
-          <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", width: 134, height: 5, background: "#111", borderRadius: 100 }} />
         </div>
       </div>
 

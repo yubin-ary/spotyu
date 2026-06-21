@@ -25,6 +25,53 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ── Phone frame wrapper ── */
+.pf-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.pf-sizing {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pf-frame {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #111;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Mobile: fullscreen, no frame decoration */
+@media (max-width: 500px) {
+  .pf-outer {
+    background: transparent;
+    min-height: 100dvh;
+    align-items: flex-start;
+  }
+
+  .pf-sizing {
+    width: 100vw;
+    height: 100dvh;
+  }
+
+  .pf-frame {
+    border: none !important;
+    border-radius: 0 !important;
+    /* Safari safe area */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
 @keyframes spotyu-orbit-spin {
   from {
     transform: rotate(0deg);

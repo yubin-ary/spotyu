@@ -18,10 +18,10 @@ export default function SplashPage() {
   }, [router]);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#f3f4f6" }}>
-      <div style={{ width: 390, height: 844, position: "relative" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
         <div
-          className="border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
+          className="pf-frame border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
           style={{
             width: "100%", height: "100%",
             backgroundImage:
@@ -57,12 +57,6 @@ export default function SplashPage() {
           <div style={{ position: "absolute", left: 38, top: 248, width: 310, height: 372, overflow: "hidden" }}>
             <img alt="" style={{ position: "absolute", height: "164.42%", left: "-97.77%", top: "-3.85%", width: "295.59%", maxWidth: "none" }} src={imgIllustration} />
           </div>
-
-          {/* 홈 인디케이터 */}
-          <div style={{ position: "absolute", bottom: -2, left: "50%", transform: "translateX(-50%)", width: 390, height: 34, overflow: "hidden" }}>
-            <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", width: 134, height: 5, borderRadius: 100, background: "#111" }} />
-          </div>
-
           {/* 시작하기 버튼 */}
           <SplashStartButton />
         </div>

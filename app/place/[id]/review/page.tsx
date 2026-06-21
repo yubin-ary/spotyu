@@ -153,9 +153,9 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
   const overlayOpen = showCalendar || editingTime;
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#f3f4f6" }}>
-      <div style={{ width: 390, height: 844, position: "relative" }}>
-        <div style={{ width: "100%", height: "100%", border: "2px solid #111", borderRadius: 25, overflow: "hidden", position: "relative", background: "#fff" }}>
+    <div className="pf-outer">
+      <div className="pf-sizing">
+        <div className="pf-frame" style={{ width: "100%", height: "100%", border: "2px solid #111", borderRadius: 25, overflow: "hidden", position: "relative", background: "#fff" }}>
 
           {/* Overlay backdrop */}
           {overlayOpen && (
@@ -283,8 +283,6 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
               {submitting ? "저장 중..." : "등록하기"}
             </button>
           </div>
-
-          {/* Home indicator */}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "lastUpdated": "2026-06-21T15:20:11.346Z",
+  "lastUpdated": "2026-06-21T18:59:27.511Z",
   "activeFeatures": [
     "study-spot",
     "onboarding",
@@ -21,7 +21,8 @@
     "placeService.ts",
     "bookmarkService.ts",
     "reviews",
-    "visitHistoryService.ts"
+    "visitHistoryService.ts",
+    "visit-record"
   ],
   "primaryFeature": "study-spot",
   "features": {
@@ -34,9 +35,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-18T07:48:56.562Z",
-        "lastUpdated": "2026-06-21T15:20:11.344Z"
+        "lastUpdated": "2026-06-21T18:52:46.772Z"
       },
-      "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/page.tsx"
+      "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/layout.tsx"
     },
     "onboarding": {
       "phase": "do",
@@ -47,7 +48,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-18T07:56:03.562Z",
-        "lastUpdated": "2026-06-21T07:43:11.609Z"
+        "lastUpdated": "2026-06-21T18:58:27.257Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/onboarding/page.tsx"
     },
@@ -60,7 +61,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-18T08:14:53.217Z",
-        "lastUpdated": "2026-06-21T07:46:34.217Z"
+        "lastUpdated": "2026-06-21T18:59:27.508Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/status/purpose/page.tsx"
     },
@@ -73,7 +74,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-18T08:15:17.690Z",
-        "lastUpdated": "2026-06-21T07:45:20.603Z"
+        "lastUpdated": "2026-06-21T18:27:52.646Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/status/duration/page.tsx"
     },
@@ -99,7 +100,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-19T09:05:14.647Z",
-        "lastUpdated": "2026-06-21T14:43:56.445Z"
+        "lastUpdated": "2026-06-21T18:31:23.294Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/map/KakaoMapView.tsx"
     },
@@ -125,7 +126,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-19T10:27:22.310Z",
-        "lastUpdated": "2026-06-21T12:20:16.952Z"
+        "lastUpdated": "2026-06-21T18:49:04.704Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/place/[id]/page.tsx"
     },
@@ -177,7 +178,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-20T05:47:57.901Z",
-        "lastUpdated": "2026-06-21T09:29:56.966Z"
+        "lastUpdated": "2026-06-21T18:47:32.898Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/place/[id]/review/page.tsx"
     },
@@ -203,7 +204,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-06-21T07:08:09.744Z",
-        "lastUpdated": "2026-06-21T07:46:07.948Z"
+        "lastUpdated": "2026-06-21T18:27:53.918Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/status/condition/page.tsx"
     },
@@ -284,6 +285,19 @@
         "lastUpdated": "2026-06-21T09:29:40.504Z"
       },
       "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/services/visitHistoryService.ts"
+    },
+    "visit-record": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-06-21T18:33:49.063Z",
+        "lastUpdated": "2026-06-21T18:37:59.863Z"
+      },
+      "lastFile": "/Users/yv073/likeLion/study_spot/study-spot/app/visit-record/page.tsx"
     }
   },
   "pipeline": {
@@ -294,7 +308,7 @@
   "session": {
     "startedAt": "2026-06-18T07:47:42.287Z",
     "onboardingCompleted": false,
-    "lastActivity": "2026-06-21T15:20:11.346Z"
+    "lastActivity": "2026-06-21T18:59:27.511Z"
   },
   "history": [
     {
@@ -2166,6 +2180,288 @@
     {
       "timestamp": "2026-06-21T15:20:11.346Z",
       "feature": "study-spot",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:06:46.470Z",
+      "feature": "study-spot",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:07:51.547Z",
+      "feature": "study-spot",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:11:02.999Z",
+      "feature": "study-spot",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:16:39.955Z",
+      "feature": "onboarding",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:19:04.153Z",
+      "feature": "onboarding",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:19:29.852Z",
+      "feature": "purpose",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:20:52.797Z",
+      "feature": "purpose",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:21:05.591Z",
+      "feature": "purpose",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:25:14.283Z",
+      "feature": "condition",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:27:03.774Z",
+      "feature": "onboarding",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:27:10.608Z",
+      "feature": "duration",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:27:18.858Z",
+      "feature": "condition",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:27:46.768Z",
+      "feature": "onboarding",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:27:52.649Z",
+      "feature": "duration",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:27:53.920Z",
+      "feature": "condition",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:30:14.776Z",
+      "feature": "map",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:31:23.296Z",
+      "feature": "map",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:33:49.066Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:34:03.554Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:34:29.663Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:34:55.331Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:35:38.444Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:37:25.061Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:37:36.080Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:37:59.866Z",
+      "feature": "visit-record",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:43:08.994Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:43:14.089Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:43:19.306Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:43:42.312Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:44:38.914Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:44:46.587Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:44:51.091Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:44:57.418Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:45:00.323Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:45:03.404Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:45:07.622Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:45:35.879Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:46:18.332Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:46:40.282Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:47:05.102Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:47:32.901Z",
+      "feature": "review",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:49:04.707Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:52:46.775Z",
+      "feature": "study-spot",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:54:23.760Z",
+      "feature": "onboarding",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:58:22.341Z",
+      "feature": "onboarding",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:58:27.260Z",
+      "feature": "onboarding",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-06-21T18:59:27.511Z",
+      "feature": "purpose",
       "phase": "do",
       "action": "updated"
     }
