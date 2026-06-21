@@ -184,7 +184,7 @@ export default function BookmarksPage() {
           className="pf-frame border-2 border-[#111] border-solid overflow-clip relative rounded-[25px]"
           style={{ width: "100%", height: "100%", background: "#fff" }}
         >
-          <div className="absolute" style={{ top: 43, left: 0, width: 390, height: 46, zIndex: 20, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", boxSizing: "border-box" }}>
+          <div className="absolute" style={{ top: 20, left: 0, width: 390, height: 46, zIndex: 20, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", boxSizing: "border-box" }}>
             <p style={{ fontSize: 23, fontWeight: 900, color: "#ffbf00", letterSpacing: "-0.575px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
               SPOTYU
             </p>
@@ -194,7 +194,7 @@ export default function BookmarksPage() {
             </div>
           </div>
 
-          <div className="absolute" style={{ top: 100, left: "50%", transform: "translateX(-50%)", width: 342 }}>
+          <div className="absolute" style={{ top: 76, left: "50%", transform: "translateX(-50%)", width: 342 }}>
             <div style={{ background: "#fff", borderRadius: 100, boxShadow: "0px 2px 2px rgba(0,0,0,0.15)", display: "flex", alignItems: "center", padding: "11px 16px", gap: 8 }}>
               <span style={{ fontSize: 16, color: "#9a9a9a" }}>🔍</span>
               <input
@@ -212,7 +212,7 @@ export default function BookmarksPage() {
             </div>
           </div>
 
-          <div className="absolute" style={{ top: 158, left: 24, right: 24, display: "flex", alignItems: "center", gap: 8, overflowX: "auto", scrollbarWidth: "none" }}>
+          <div className="absolute" style={{ top: 134, left: 24, right: 24, display: "flex", alignItems: "center", gap: 8, overflowX: "auto", scrollbarWidth: "none" }}>
             {filters.map((f) => {
               const active = filter === f;
               return (
@@ -241,7 +241,7 @@ export default function BookmarksPage() {
           <div
             className="absolute"
             style={{
-              top: 200, left: 0, right: 0, bottom: 80,
+              top: 176, left: 0, right: 0, bottom: 80,
               overflowY: "auto", padding: "8px 24px 20px",
               display: "flex", flexDirection: "column", gap: 14,
             }}

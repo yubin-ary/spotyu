@@ -140,9 +140,8 @@ export default function IslandPage({ params }: { params: Promise<{ type: string 
   return (
     <div className="pf-outer">
       <div className="pf-sizing">
-        <div style={{
+        <div className="pf-frame border-2 border-[#111] border-solid overflow-clip rounded-[25px]" style={{
           width: "100%", height: "100%",
-          border: "2px solid #111", borderRadius: 25, overflow: "hidden",
           position: "relative", background: "#f8f8f8",
         }}>
 

@@ -128,7 +128,7 @@ export default function ThemePage() {
           <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
 
           {/* Header */}
-          <div style={{ paddingTop: 43, height: 89, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "43px 24px 0", boxSizing: "border-box" }}>
+          <div style={{ height: 66, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px 0", boxSizing: "border-box" }}>
             <p style={{ fontSize: 23, fontWeight: 900, color: "#ffbf00", letterSpacing: "-0.575px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
               SPOTYU
             </p>
