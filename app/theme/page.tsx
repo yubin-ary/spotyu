@@ -89,10 +89,8 @@ export default function ThemePage() {
   const touchStartX = useRef<number | null>(null);
 
   const [places, setPlaces] = useState<Place[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 500);
     getPlaces()
       .then((data) => setPlaces(data))
       .catch((err) => console.error("장소 목록 로딩 실패:", err));
@@ -126,8 +124,11 @@ export default function ThemePage() {
             flexDirection: "column",
           }}
         >
+          {/* Scrollable area: header + content */}
+          <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
+
           {/* Header */}
-          <div style={{ flexShrink: 0, paddingTop: 43, height: 89, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "43px 24px 0", boxSizing: "border-box" }}>
+          <div style={{ paddingTop: 43, height: 89, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "43px 24px 0", boxSizing: "border-box" }}>
             <p style={{ fontSize: 23, fontWeight: 900, color: "#ffbf00", letterSpacing: "-0.575px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
               SPOTYU
             </p>
@@ -138,7 +139,7 @@ export default function ThemePage() {
           </div>
 
           {/* Title */}
-          <div style={{ flexShrink: 0, padding: "12px 24px 0" }}>
+          <div style={{ padding: "12px 24px 0" }}>
             <p style={{ fontSize: 22, fontWeight: 700, color: "#1a1a1a", lineHeight: 1.4, letterSpacing: "-0.5px" }}>
               오늘은 어떤 공간에서<br />공부하고 싶나요?
             </p>
@@ -147,16 +148,11 @@ export default function ThemePage() {
             </p>
           </div>
 
-          {/* Spacer (PC only) */}
-          {!isMobile && <div style={{ flex: 0.6 }} />}
-          {isMobile && <div style={{ height: 28 }} />}
+          <div style={{ height: 28 }} />
 
-          {/* Scrollable wrapper on mobile only */}
-          <div style={isMobile ? { flex: 1, overflowY: "auto", overflowX: "hidden", paddingBottom: 80 } : { flexShrink: 0 }}>
-
-          {/* Card carousel + dots */}
+          {/* Card carousel */}
           <div
-            style={{ position: "relative", height: isMobile ? 490 : 420, overflow: "visible" }}
+            style={{ position: "relative", height: 420, overflow: "visible" }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -176,7 +172,7 @@ export default function ThemePage() {
                     top: isActive ? 0 : 16,
                     left: "50%",
                     width: CARD_W,
-                    height: isActive ? (isMobile ? 490 : 420) : (isMobile ? 460 : 390),
+                    height: isActive ? 420 : 390,
                     transform: `translateX(calc(-50% + ${x}px))`,
                     transition: "transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), top 0.35s, height 0.35s, opacity 0.35s",
                     backgroundColor: "#ffc933",
@@ -246,10 +242,8 @@ export default function ThemePage() {
             ))}
           </div>
 
-          </div>{/* end scroll wrapper */}
-
-          {/* Spacer (PC only) */}
-          {!isMobile && <div style={{ flex: 1.4 }} />}
+          <div style={{ height: 32 }} />
+          </div>{/* end scrollable area */}
 
           {/* Nav */}
           <div className="nav-bottom absolute" style={{ left: 0, right: 0, top: 745, height: 63, zIndex: 25 }}>
