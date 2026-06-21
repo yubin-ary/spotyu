@@ -217,6 +217,7 @@ export default function ThemePage() {
                         background: "rgba(255,255,255,0.75)", border: "none", borderRadius: 10,
                         fontSize: 14, fontWeight: 700, color: "#3a2e10", cursor: "pointer",
                         display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                        outline: "none",
                       }}
                     >
                       탐험하기 <span style={{ fontSize: 16 }}>›</span>
