@@ -86,13 +86,17 @@ function toPlace(api: ApiPlace): Place {
 export async function getPlaces(): Promise<Place[]> {
   const res = await fetch(`${BASE_URL}/SPOTYU/places`);
   if (!res.ok) throw new Error(`장소 목록을 불러오지 못했어요 (${res.status})`);
-  const data: ApiPlace[] = await res.json();
-  return data.map(toPlace);
+  const json = await res.json();
+  // 백엔드 응답이 { success, data: [...] } 형태이거나 그냥 배열인 경우 모두 대응
+  const list: ApiPlace[] = Array.isArray(json) ? json : json.data;
+  return list.map(toPlace);
 }
 
 export async function getPlace(placeId: number): Promise<Place> {
   const res = await fetch(`${BASE_URL}/SPOTYU/places/${placeId}`);
   if (!res.ok) throw new Error(`장소 정보를 불러오지 못했어요 (${res.status})`);
-  const data: ApiPlace = await res.json();
-  return toPlace(data);
+  const json = await res.json();
+  // { success, data: {...} } 형태이거나 그냥 객체인 경우 모두 대응
+  const item: ApiPlace = json.data ?? json;
+  return toPlace(item);
 }
